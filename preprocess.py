@@ -26,5 +26,5 @@ for i in df.index:
     h = h/720
 
 
-    with open('data/segmentation/images/' + f'{df["image_name"][i]}'[:-4] + 'txt', "w") as f:
+    with open('data/segmentation/labels/' + f'{df["image_name"][i]}'[:-4] + 'txt', "w") as f:
         f.write(f'0 {x} {y} {w} {h}')
