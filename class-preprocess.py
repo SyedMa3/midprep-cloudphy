@@ -1,5 +1,4 @@
 import pandas as pd
-import math
 
 def mid_point(lst):
   x1 = (float(lst[0]) + float(lst[6])) / 2
@@ -14,13 +13,13 @@ def mid_point(lst):
 
 l = ['BPL-Ultima-PrimeD-A', 'BPL-EliteView-EV100-C', 'BPL-EliteView-EV10-B_Meditec-England-A', 'Nihon-Kohden-lifescope-A']
 
-for n in l:
+for idx, n in enumerate(l):
 
     df = pd.read_csv(f'./data/classification/{n}.csv')
 
     for i in df.index:
 
-        with open(f'data/classification/{n}/' + f'{df["image_name"][i]}'[:-4] + 'txt', "w") as f:
+        with open(f'data/classification/labels/' + f'{df["image_name"][i]}'[:-4] + 'txt', "w") as f:
             tt = df.iloc[i]
             for j in range(1,10):
 
@@ -31,4 +30,6 @@ for n in l:
                 t = (tt[j])[1:-1].replace(' ','').split(',')
 
                 x,y,w,h = t
-                f.write(f'{i} {x} {y} {w} {h}\n')
+                f.write(f'{j} {x} {y} {w} {h}\n')
+
+            f.write(f'{idx+10} 0.5 0.5 1.0 1.0\n')
